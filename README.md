@@ -1,27 +1,20 @@
-# Missão Cumprida — Noturno
+# Missão Cumprida — Noturno (sem Firebase)
 
-Jogo digital para a IV Mentoria de Professores Articuladores do Ensino Noturno. Quatro rodadas, nove cartas, imprevistos, registro de decisões, painel do formador, revelação após quatro rodadas e exportação CSV.
+Jogo digital estático para a IV Mentoria de Professores Articuladores do Noturno. Pode ser publicado gratuitamente na Vercel como site estático.
 
-## Publicação no mesmo GitHub Pages
+## Publicar na Vercel
+1. No repositório `missao-cumprida-noturno` do GitHub, substitua `index.html` e `app.js` pelos arquivos deste pacote.
+2. Na Vercel, importe o repositório. Framework: Other; diretório raiz: `./`; sem build.
+3. Abra o link de produção. Cada equipe utiliza um notebook e um nome próprio.
 
-1. No repositório do jogo dos Coordenadores, crie a pasta `noturno`.
-2. Coloque nela `index.html`, `app.js` e um `firebase-config.js` com a **mesma configuração Firebase** já utilizada pelo jogo anterior. O arquivo `firebase-config.example.js` serve de modelo.
-3. Faça commit. Com GitHub Pages ativado, acesse `https://SEU-USUARIO.github.io/SEU-REPOSITORIO/noturno/?sala=articuladores-iv`.
-4. No notebook do formador, abra `https://SEU-USUARIO.github.io/SEU-REPOSITORIO/noturno/?sala=articuladores-iv&painel=1`.
-5. Cada equipe abre o link normal e informa um nome diferente.
+## Funcionamento
+- Quatro semanas, nove cartas e registro de decisões.
+- Sem imprevisto na quarta semana e sem prestação de contas administrativa.
+- Revelação automática apenas após a quarta rodada.
+- Exportação CSV por equipe e opção de imprimir/salvar PDF.
+- Dados armazenados no navegador local (`localStorage`).
 
-A coleção Firestore utilizada é `missao_noturno_salas/{sala}/equipes/{id}`, diferente da coleção do jogo dos Coordenadores.
+## Limitação importante
+**Sem Firebase ou outro servidor, não há painel central em tempo real.** O endereço `?painel=1` mostra apenas equipes salvas no mesmo navegador/computador. Para reunir os resultados de notebooks diferentes, cada equipe deve baixar seu CSV e enviá-lo ao formador. Não limpe os dados do navegador antes de exportar.
 
-## Configuração e segurança
-
-O jogo usa autenticação anônima do Firebase. Ative-a em Authentication. As regras Firestore devem permitir leitura/escrita da coleção para usuários autenticados, mas **não publique uma regra ampla sem antes limitar quem pode editar**. A versão inicial utiliza `painel=1` como controle de interface, **não como autenticação de administrador**; por isso é um protótipo para teste, e não um painel seguro para uso público. Antes da formação, configure permissões de administrador no Firebase (por exemplo, custom claims e regras restritas) e revise as operações de gravação.
-
-O jogo usa dados fictícios. Não insira nomes, telefones ou informações identificáveis de estudantes.
-
-## Teste local
-
-Sirva a pasta com um servidor HTTP local (por exemplo, `python3 -m http.server 8000`) e abra `http://localhost:8000`. Sem `firebase-config.js` válido, funciona como demonstração local em um único navegador, sem sincronização entre notebooks.
-
-## Atenção
-
-Não substitua o `index.html` original do jogo dos Coordenadores: mantenha estes arquivos apenas na pasta `noturno`. A liberação dos resultados ocorre por equipe após a quarta rodada.
+Não insira dados pessoais reais de estudantes.
